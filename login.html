@@ -3,127 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-manga / User Registration</title>
+    <title>E-manga Login</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
+        /* Use Inter as the default font */
         body {
-            background-color: #585858;
-            font-family: sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        @import url('https://fonts.googleapis.com/css2?family=Leckerli+One&display=swap');
-        .leckerli-one-regular {
-            font-family: "Leckerli One", cursive;
-            font-weight: 400;
-            font-style: normal;
-        }
-        .container {
-            background-color: #EAEAEA;
-            border-radius: 25px;
-            padding: 40px 60px;
-            width: 800px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        h1 {
-            font-size: 36px;
-            font-weight: bold;
-            color: #333;
-            margin-bottom: 40px;
-            text-align: left;
-        }
-
-        .main-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .form-section {
-            width: 50%;
-        }
-
-        .form-group {
-            margin-bottom: 25px;
-        }
-
-        .form-group label {
-            display: block;
-            color: #666;
-            margin-bottom: 8px;
-            font-size: 18px;
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 12px;
-            border: none;
-            background-color: #D9D9D9;
-            border-radius: 5px;
-            box-sizing: border-box;
-        }
-
-        .login-button {
-            padding: 12px 30px;
-            border: 1px solid #666;
-            background-color: #EAEAEA;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 18px;
-            color: #333;
-            margin-top: 20px;
-        }
-
-        .logo-section {
-            width: 40%;
-            text-align: center;
-        }
-
-        .logo {
-            font-family: "Leckerli One", cursive;
-            font-size: 150px;
-            color: #585858;
-            margin: 0;
-        }
-
-        .logo-text {
-            font-size: 48px;
-            font-weight: bold;
-            color: #585858;
-            margin-top: -30px;
+            font-family: 'Inter', sans-serif;
         }
     </style>
 </head>
-<body>
+<body class="bg-gray-700 flex items-center justify-center min-h-screen transition-all duration-300">
 
-    <div class="container">
-        <h1>E-manga / User Registration</h1>
-        <div class="main-content">
-            <div class="form-section">
-                <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text" id="username">
-                </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password">
-                </div>
-                <div class="form-group">
-                    <label for="email">email address</label>
-                    <input type="email" id="email">
-                </div>
-                <button class="login-button" onclick="window.location.href='dashboard.html'">Login</button>
-                
+    <!-- Login Card -->
+    <div id="login-card" class="bg-gray-200 p-8 sm:p-12 rounded-3xl shadow-2xl w-full max-w-md">
+
+        <!-- Header -->
+        <h1 class="text-4xl sm:text-5xl font-bold text-gray-800 text-center mb-8">
+            E-manga
+        </h1>
+
+        <!-- Form -->
+        <form id="login-form">
+            <!-- Username Input -->
+            <div class="mb-5">
+                <label for="username" class="block mb-2 text-sm font-medium text-gray-600">Username</label>
+                <input type="text" id="username" name="username" class="w-full p-4 bg-gray-300 rounded-xl border-none focus:outline-none focus:ring-2 focus:ring-gray-500 transition-shadow">
             </div>
-            <div class="logo-section">
-                <img src="asset/logo.jpg" alt="E-manga Logo" style="max-width: 100%; max-height: 200px; border-radius: 15px;">
-                
+
+            <!-- Password Input -->
+            <div class="mb-6">
+                <label for="password" class="block mb-2 text-sm font-medium text-gray-600">Password</label>
+                <input type="password" id="password" name="password" class="w-full p-4 bg-gray-300 rounded-xl border-none focus:outline-none focus:ring-2 focus:ring-gray-500 transition-shadow">
             </div>
-        </div>
+
+            <!-- Login Button Container -->
+            <div class="text-center">
+                 <button type="submit" class="bg-transparent border-2 border-gray-500 text-gray-600 font-semibold py-2 px-8 rounded-full hover:bg-gray-800 hover:text-white transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-200 focus:ring-gray-800">
+                    Login
+                </button>
+            </div>
+
+             <!-- Registration Link -->
+            <div class="text-center mt-4">
+                <p class="text-sm text-gray-600">
+                    Don't have an account? <a href="registration.html" class="font-medium hover:text-gray-800 hover:underline">Register</a>
+                </p>
+            </div>
+        </form>
+
     </div>
 
+    <script>
+        // --- DOM Elements ---
+        const loginForm = document.getElementById('login-form');
+        const usernameInput = document.getElementById('username');
+        const passwordInput = document.getElementById('password');
+
+        // --- Login Logic ---
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault(); // Prevent the form from actually submitting
+            
+            const username = usernameInput.value;
+            const password = passwordInput.value;
+
+            if (username === 'user' && password === 'user') {
+                // Store a session token to simulate being logged in
+                sessionStorage.setItem('isLoggedIn', 'true');
+                // Redirect to dashboard
+                window.location.href = 'dashboard.html';
+            } else {
+                // Redirect to registration page on failed login
+                window.location.href = 'registration.html';
+            }
+        });
+    </script>
 </body>
 </html>

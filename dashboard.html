@@ -72,14 +72,15 @@
         }
         
         /* Individual icon styling */
-        .nav-icons .material-icons {
+        .nav-icons .material-icons, .nav-icons a {
             font-size: 28px;
             color: white;
             cursor: pointer;
             transition: color 0.3s, transform 0.3s;
+            text-decoration: none; /* Remove underline from link */
         }
 
-        .nav-icons .material-icons:hover {
+        .nav-icons .material-icons:hover, .nav-icons a:hover {
             color: #d8c4ff;
             transform: translateY(-2px);
         }
@@ -135,41 +136,6 @@
             text-decoration: underline;
         }
         
-        /* Profile Dropdown Styles */
-        .profile-dropdown {
-            right: 40px;
-            width: auto;
-        }
-
-        .profile-details {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .profile-avatar {
-            font-size: 64px !important;
-            color: #a78bfa; 
-        }
-
-        .user-info {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .info-box {
-            background-color: #4a3f6b;
-            color: #f0f0f0;
-            padding: 10px 25px;
-            border-radius: 12px;
-            font-size: 16px;
-            font-weight: 500;
-            min-width: 140px;
-            text-align: left;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
         /* Downloads Dropdown Styles */
         .downloads-dropdown {
             right: 250px; 
@@ -222,7 +188,7 @@
 
         /* Top recommendation section */
         .hero-section {
-            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('asset/recc.jpg') no-repeat center center;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://placehold.co/1400x400/6d28d9/f0f0f0?text=Hero+Background') no-repeat center center;
             background-size: cover;
             padding: 60px 50px;
         }
@@ -309,18 +275,11 @@
             z-index: 10; /* Ensures the hovered item appears on top of others */
         }
 
-        .comic-item img, .comic-item .placeholder {
+        .comic-item img {
             width: 100%;
-            height: auto;
-            border-radius: 0;
-            background-color: #555;
-            aspect-ratio: 2 / 3;
+            height: 100%;
             object-fit: cover;
             border-bottom: 3px solid #a78bfa;
-        }
-        
-        .comic-item .placeholder {
-            background-color: #4a3f6b;
         }
         
         /* Right column for comic info */
@@ -396,7 +355,9 @@
                     <span class="material-icons" title="Checklist">checklist</span>
                     <span class="material-icons" id="notification-icon-trigger" title="Notifications">notifications</span>
                     <span class="material-icons" title="Settings">settings</span>
-                    <span class="material-icons" id="profile-icon-trigger" title="Profile">account_circle</span>
+                    <a href="login.html" title="Profile">
+                        <span class="material-icons">account_circle</span>
+                    </a>
                 </div>
                 <!-- The hamburger icon that toggles the dropdown -->
                 <span class="material-icons" id="dropdown-toggle" title="Menu">menu</span>
@@ -432,16 +393,6 @@
                 <a href="#" class="show-more">show more...</a>
             </div>
 
-            <!-- Profile Dropdown Menu -->
-            <div class="dropdown-menu profile-dropdown" id="profile-dropdown">
-                <div class="profile-details">
-                    <span class="material-icons profile-avatar">account_circle</span>
-                    <div class="user-info">
-                        <div class="info-box">Caezarlov</div>
-                        <div class="info-box">4636728</div>
-                    </div>
-                </div>
-            </div>
         </header>
 
         <main>
@@ -456,22 +407,22 @@
                     <h2>Latest Release</h2>
                     <div class="comic-grid">
                         <div class="comic-item">
-                            <img src="https://placehold.co/150x225/8b5cf6/f0f0f0?text=Cover+1" alt="Comic Cover 1">
+                            <img src="https://i.pinimg.com/236x/b8/ac/ec/b8acece6faf3c090c87324f604e91dd7.jpg" alt="Comic Cover 1">
                         </div>
                         <div class="comic-item">
-                            <img src="https://placehold.co/150x225/a78bfa/f0f0f0?text=Cover+2" alt="Comic Cover 2">
+                            <img src="https://meo.comick.pictures/w8r-m.jpg" alt="Comic Cover 2">
                         </div>
                         <div class="comic-item">
-                            <div class="placeholder"></div>
+                            <img src="https://meo.comick.pictures/4Z8zo-m.jpg" alt="Comic Cover 3">
                         </div>
                         <div class="comic-item">
-                            <div class="placeholder"></div>
+                            <img src="https://meo.comick.pictures/7Npe0-m.jpg" alt="Comic Cover 4">
                         </div>
                         <div class="comic-item">
-                            <div class="placeholder"></div>
+                            <img src="https://meo.comick.pictures/oa6wW4-m.jpg" alt="Comic Cover 5">
                         </div>
                          <div class="comic-item">
-                            <div class="placeholder"></div>
+                            <img src="https://meo.comick.pictures/lkqxo-m.jpg" alt="Comic Cover 6">
                         </div>
                     </div>
                 </div>
@@ -492,9 +443,6 @@
         const dropdownToggle = document.getElementById('dropdown-toggle');
         const navIconList = document.getElementById('nav-icon-list');
         
-        const profileIconTrigger = document.getElementById('profile-icon-trigger');
-        const profileDropdown = document.getElementById('profile-dropdown');
-        
         const downloadIconTrigger = document.getElementById('download-icon-trigger');
         const downloadsDropdown = document.getElementById('downloads-dropdown');
         
@@ -503,7 +451,6 @@
 
         // Function to close all dropdowns
         function closeAllDropdowns() {
-            profileDropdown.classList.remove('show');
             downloadsDropdown.classList.remove('show');
             notificationDropdown.classList.remove('show');
         }
@@ -512,16 +459,6 @@
         dropdownToggle.addEventListener('click', function(event) {
             event.stopPropagation(); // Prevents click from bubbling up
             navIconList.classList.toggle('show');
-        });
-
-        // Add click listener for the profile icon
-        profileIconTrigger.addEventListener('click', function(event) {
-            event.stopPropagation();
-            const isShowing = profileDropdown.classList.contains('show');
-            closeAllDropdowns();
-            if (!isShowing) {
-                profileDropdown.classList.add('show');
-            }
         });
 
         // Add click listener for the download icon
