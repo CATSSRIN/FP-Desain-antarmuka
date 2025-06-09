@@ -138,7 +138,7 @@
         
         /* Downloads Dropdown Styles */
         .downloads-dropdown {
-            right: 250px; 
+            right: 255px; 
         }
 
         .download-list {
@@ -161,7 +161,7 @@
 
         /* Notification Dropdown Styles */
         .notification-dropdown {
-            right: 150px;
+            right: 145px;
         }
 
         .notification-list {
@@ -185,10 +185,94 @@
             color: #a78bfa;
         }
 
+        /* Settings Dropdown Styles */
+        .settings-dropdown {
+            right: 90px;
+            width: 280px;
+        }
+        .setting-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 16px;
+        }
+        .switch {
+          position: relative;
+          display: inline-block;
+          width: 50px;
+          height: 28px;
+        }
+        .switch input {
+          opacity: 0;
+          width: 0;
+          height: 0;
+        }
+        .slider {
+          position: absolute;
+          cursor: pointer;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-color: #4a3f6b;
+          transition: .4s;
+          border: 1px solid rgba(255,255,255,0.2);
+        }
+        .slider:before {
+          position: absolute;
+          content: "";
+          height: 20px;
+          width: 20px;
+          left: 3px;
+          bottom: 3px;
+          background-color: white;
+          transition: .4s;
+        }
+        input:checked + .slider {
+          background-color: #a78bfa;
+        }
+        input:focus + .slider {
+          box-shadow: 0 0 1px #a78bfa;
+        }
+        input:checked + .slider:before {
+          transform: translateX(22px);
+        }
+        .slider.round {
+          border-radius: 28px;
+        }
+        .slider.round:before {
+          border-radius: 50%;
+        }
+
+        /* History Dropdown Styles */
+        .history-dropdown {
+            right: 200px;
+        }
+
+        .history-list {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .history-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 16px;
+            padding-left: 5px;
+        }
+
+        .history-item::before {
+            content: '•';
+            font-size: 28px;
+            line-height: 1;
+            color: #a78bfa;
+        }
 
         /* Top recommendation section */
         .hero-section {
-            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://placehold.co/1400x400/6d28d9/f0f0f0?text=Hero+Background') no-repeat center center;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('asset/recc.jpg') no-repeat center center;
             background-size: cover;
             padding: 60px 50px;
         }
@@ -256,6 +340,13 @@
             grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
             gap: 30px;
         }
+        
+        /* Styling for the new anchor tag wrapping the comic item */
+        .comic-link {
+            text-decoration: none;
+            color: inherit;
+            display: block; /* Make the anchor fill the grid cell */
+        }
 
         .comic-item {
             position: relative;
@@ -266,10 +357,11 @@
             border-radius: 15px;
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            height: 100%; /* Ensure item fills the link */
         }
 
         /* Hover effect for comic items */
-        .comic-item:hover {
+        .comic-link:hover .comic-item {
             transform: scale(1.05) translateY(-5px); /* Scales up and lifts the item */
             box-shadow: 0 12px 30px rgba(0,0,0,0.4); /* Adds a more prominent shadow */
             z-index: 10; /* Ensures the hovered item appears on top of others */
@@ -352,9 +444,9 @@
                 <!-- The icons that appear in the dropdown -->
                 <div class="nav-icons" id="nav-icon-list">
                     <span class="material-icons" id="download-icon-trigger" title="Download">download</span>
-                    <span class="material-icons" title="Checklist">checklist</span>
+                    <span class="material-icons" id="history-icon-trigger" title="History">checklist</span>
                     <span class="material-icons" id="notification-icon-trigger" title="Notifications">notifications</span>
-                    <span class="material-icons" title="Settings">settings</span>
+                    <span class="material-icons" id="settings-icon-trigger" title="Settings">settings</span>
                     <a href="login.html" title="Profile">
                         <span class="material-icons">account_circle</span>
                     </a>
@@ -363,6 +455,29 @@
                 <span class="material-icons" id="dropdown-toggle" title="Menu">menu</span>
             </div>
             
+             <!-- History Dropdown Menu -->
+            <div class="dropdown-menu history-dropdown" id="history-dropdown">
+                <h2>History</h2>
+                <div class="history-list">
+                    <div class="history-item">
+                        <span>SukaSuka - ch 14</span>
+                    </div>
+                </div>
+                <a href="#" class="show-more">show more...</a>
+            </div>
+            
+            <!-- Settings Dropdown Menu -->
+            <div class="dropdown-menu settings-dropdown" id="settings-dropdown">
+                <h2>Settings</h2>
+                <div class="setting-item">
+                    <label for="enable-downloads">Enable downloads?</label>
+                    <label class="switch">
+                        <input type="checkbox" id="enable-downloads">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+            </div>
+
             <!-- Notification Dropdown Menu -->
             <div class="dropdown-menu notification-dropdown" id="notification-dropdown">
                 <h2>Notifications</h2>
@@ -406,24 +521,36 @@
                 <div class="latest-releases">
                     <h2>Latest Release</h2>
                     <div class="comic-grid">
-                        <div class="comic-item">
-                            <img src="https://i.pinimg.com/236x/b8/ac/ec/b8acece6faf3c090c87324f604e91dd7.jpg" alt="Comic Cover 1">
-                        </div>
-                        <div class="comic-item">
-                            <img src="https://meo.comick.pictures/w8r-m.jpg" alt="Comic Cover 2">
-                        </div>
-                        <div class="comic-item">
-                            <img src="https://meo.comick.pictures/4Z8zo-m.jpg" alt="Comic Cover 3">
-                        </div>
-                        <div class="comic-item">
-                            <img src="https://meo.comick.pictures/7Npe0-m.jpg" alt="Comic Cover 4">
-                        </div>
-                        <div class="comic-item">
-                            <img src="https://meo.comick.pictures/oa6wW4-m.jpg" alt="Comic Cover 5">
-                        </div>
-                         <div class="comic-item">
-                            <img src="https://meo.comick.pictures/lkqxo-m.jpg" alt="Comic Cover 6">
-                        </div>
+                        <a href="comic1.html" class="comic-link">
+                            <div class="comic-item">
+                                <img src="https://i.pinimg.com/236x/b8/ac/ec/b8acece6faf3c090c87324f604e91dd7.jpg" alt="Comic Cover 1">
+                            </div>
+                        </a>
+                        <a href="comic2.html" class="comic-link">
+                            <div class="comic-item">
+                                <img src="https://meo.comick.pictures/w8r-m.jpg" alt="Comic Cover 2">
+                            </div>
+                        </a>
+                        <a href="comic3.html" class="comic-link">
+                            <div class="comic-item">
+                                <img src="https://meo.comick.pictures/4Z8zo-m.jpg" alt="Comic Cover 3">
+                            </div>
+                        </a>
+                        <a href="comic4.html" class="comic-link">
+                            <div class="comic-item">
+                                <img src="https://meo.comick.pictures/7Npe0-m.jpg" alt="Comic Cover 4">
+                            </div>
+                        </a>
+                        <a href="comic5.html" class="comic-link">
+                            <div class="comic-item">
+                                <img src="https://meo.comick.pictures/oa6wW4-m.jpg" alt="Comic Cover 5">
+                            </div>
+                        </a>
+                         <a href="comic6.html" class="comic-link">
+                            <div class="comic-item">
+                                <img src="https://meo.comick.pictures/lkqxo-m.jpg" alt="Comic Cover 6">
+                            </div>
+                        </a>
                     </div>
                 </div>
 
@@ -449,10 +576,18 @@
         const notificationIconTrigger = document.getElementById('notification-icon-trigger');
         const notificationDropdown = document.getElementById('notification-dropdown');
 
+        const settingsIconTrigger = document.getElementById('settings-icon-trigger');
+        const settingsDropdown = document.getElementById('settings-dropdown');
+        
+        const historyIconTrigger = document.getElementById('history-icon-trigger');
+        const historyDropdown = document.getElementById('history-dropdown');
+
         // Function to close all dropdowns
         function closeAllDropdowns() {
             downloadsDropdown.classList.remove('show');
             notificationDropdown.classList.remove('show');
+            settingsDropdown.classList.remove('show');
+            historyDropdown.classList.remove('show');
         }
         
         // Add a click event listener to the hamburger menu toggle
@@ -478,6 +613,26 @@
             closeAllDropdowns();
             if (!isShowing) {
                 notificationDropdown.classList.add('show');
+            }
+        });
+
+        // Add click listener for the settings icon
+        settingsIconTrigger.addEventListener('click', function(event) {
+            event.stopPropagation();
+            const isShowing = settingsDropdown.classList.contains('show');
+            closeAllDropdowns();
+            if (!isShowing) {
+                settingsDropdown.classList.add('show');
+            }
+        });
+        
+        // Add click listener for the history icon
+        historyIconTrigger.addEventListener('click', function(event) {
+            event.stopPropagation();
+            const isShowing = historyDropdown.classList.contains('show');
+            closeAllDropdowns();
+            if (!isShowing) {
+                historyDropdown.classList.add('show');
             }
         });
 
