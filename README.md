@@ -23,9 +23,9 @@ Key Features:
 ## Contributing
 
 - Design :
-  - [Adiel Fatich Ar Rafi](https://github.com/adiel27)
-  - [Caezarlov nugraha](https://github.com/CATSSRIN)
+  - [adiel27](https://github.com/adiel27) (Adiel Fatich Ar Rafi)
+  - [CATSSRIN](https://github.com/CATSSRIN) (Caezarlov Nugraha)
 
 - Implementation :
-   - [Caezarlov nugraha](https://github.com/CATSSRIN)
+  - [CATSSRIN](https://github.com/CATSSRIN) (Caezarlov Nugraha)
 
