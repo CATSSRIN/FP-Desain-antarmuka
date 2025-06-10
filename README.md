@@ -7,6 +7,7 @@ Untuk Final project kita ditugaskan untuk membuat Desain antarmuka yang sudah *i
 
 Aplikasi E-Manga ini adalah sebuah website yang bisa digunakan user untuk membaca komik-komik
 
+[Website](https://catssrin.github.io/FP-Desain-antarmuka/index.html)
   
 
 ```bash
