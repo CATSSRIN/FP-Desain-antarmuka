@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autoplaying Video</title>
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Applying the Inter font to the body */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 flex items-center justify-center min-h-screen relative">
+    <!-- Back Button -->
+    <a href="../index.html" class="absolute top-4 left-4 bg-cyan-500 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-cyan-600 transition-colors duration-300 z-10">
+        &larr; Back
+    </a>
+
+    <!-- Main container for the video player -->
+    <div class="w-full max-w-5xl aspect-video rounded-xl overflow-hidden shadow-2xl shadow-cyan-500/20">
+        <!-- 
+            YouTube Iframe Embed
+            - The src URL is modified from the standard watch URL to the /embed/ URL.
+            - ?autoplay=1: This parameter tells the player to start the video automatically.
+            - &mute=1: This is crucial. Most modern browsers block autoplay with sound. Muting the video ensures autoplay works reliably.
+            - &loop=1&playlist=x6Z8RzEsOiE: These parameters make the video loop continuously. The 'playlist' parameter is required for 'loop' to work, even with a single video.
+            - &controls=0: Hides the player controls for a cleaner look.
+        -->
+        <iframe
+            class="w-full h-full"
+            src="https://www.youtube.com/embed/x6Z8RzEsOiE?autoplay=1&mute=1&loop=1&playlist=x6Z8RzEsOiE&controls=0"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+        </iframe>
+    </div>
+</body>
+</html>
