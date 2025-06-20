@@ -31,14 +31,19 @@
             - &loop=1&playlist=x6Z8RzEsOiE: These parameters make the video loop continuously. The 'playlist' parameter is required for 'loop' to work, even with a single video.
             - &controls=0: Hides the player controls for a cleaner look.
         -->
-        <iframe
+        <!--iframe
             class="w-full h-full"
             src="https://www.youtube.com/embed/x6Z8RzEsOiE?autoplay=1&mute=1&loop=1&playlist=x6Z8RzEsOiE&controls=0"
             title="YouTube video player"
             frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen>
-        </iframe>
+        </iframe-->
+
+            <video class="w-full h-full object-cover" controls loop autoplay muted>
+                <source src="../asset/teto.webm" type="video/webm">
+                Your browser does not support the video tag.
+            </video>
     </div>
 </body>
 </html>
