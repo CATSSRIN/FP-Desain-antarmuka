@@ -2,8 +2,9 @@
 
 Untuk Final project kita ditugaskan untuk membuat Desain antarmuka yang sudah *interactive* 
 
+## catss.my.id
 
-## [E-Manga](https://catssrin.github.io/FP-Desain-antarmuka/index.html)
+## E-Manga
 
 Aplikasi E-Manga ini adalah sebuah website yang bisa digunakan user untuk membaca komik-komik
 
