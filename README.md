@@ -2,12 +2,12 @@
 
 Untuk Final project kita ditugaskan untuk membuat Desain antarmuka yang sudah *interactive* 
 
-## [catss.my.id](catss.my.id)
+
 
 ## E-Manga
 
-Aplikasi E-Manga ini adalah sebuah website yang bisa digunakan user untuk membaca komik-komik
-
+Aplikasi E-Manga ini adalah sebuah website yang bisa digunakan user untuk membaca komik-komik <br>
+website: catss.my.id
 
   
 
